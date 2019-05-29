@@ -1,0 +1,9 @@
+{
+  "convertible": true,
+  "engineType": "ELECTRIC",
+  "licensePlate": "123NY",
+  "manufacturer": {
+    "name": "BMW"
+  },
+  "seatCount": 2
+}

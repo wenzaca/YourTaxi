@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - oraclejdk8
+before_script:
+  cd sonar-connector
+addons:
+  sonarcloud:
+    organization: "yourTaxi"
+    branches:
+      - master
+script:
+  - mvn clean install sonar:sonar

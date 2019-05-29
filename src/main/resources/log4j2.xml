@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60" packages="com.ebsco.knowledgebase.vendor">
+    <Properties>
+        <Property name="log-path">logs</Property>
+        <Property name="archive">${log-path}/archive</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <JSONLayout complete="false" compact="true" eventEol="true" properties="true" includeStacktrace="true"/>
+            <logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="ERROR" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="platform.shared" level="OFF" additivity="false">
+            <AppenderRef ref="Console-Appender" level="OFF"/>
+        </AsyncLogger>
+        <Root level="WARN">
+            <AppenderRef ref="Console-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>

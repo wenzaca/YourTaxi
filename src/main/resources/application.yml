@@ -1,0 +1,75 @@
+server:
+  port: ${service.port:8090}
+  contextPath: ${contextPath:/}
+
+###
+#   Database Settings
+###
+spring:
+  application:
+    name: yourTaxiApp
+  datasource:
+    url: jdbc:h2:mem:olympic-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  security:
+    authentication:
+      basic:
+        disableCSRF: true
+        user: admin
+        password: yourtaxi
+
+###
+#   H2 Settings
+###
+h2:
+  console:
+    enabled: true
+    path: /console
+    settings:
+      trace: false
+      web-allow-others: false
+
+###
+#   Swagger
+###
+swagger:
+  title: yourtaxi Server Applicant Test Service
+  description: This service is to check the technology knowledge of a server applicant for yourtaxi.
+  contact:
+    name: yourTaxi
+    url: https://us.yourtaxi.com/index.html
+    email: career@yourtaxi.com
+  version: Version 1.0 - mw
+  license:
+    termsUrl: urn:tos
+    provider: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+
+
+###
+#   Eureka
+###
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: http://${eureka.instance.hostname}:${server.port}/info
+    healthCheckUrlPath: http://${eureka.instance.hostname}:${server.port}/health
+    appname: ${spring.application.name}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
